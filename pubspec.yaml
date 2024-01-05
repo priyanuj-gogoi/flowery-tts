@@ -1,0 +1,25 @@
+name: flowery_tts
+version: 1.0.0
+description: An unofficial wrapper of Flowery TTS API.
+repository: https://github.com/priyanuj-gogoi/flowery-tts
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  windows:
+  web:
+
+topics:
+  - api
+  - flowery
+  - text-to-speech
+  - tts
+  - voice
+
+dependencies:
+  http: ^1.0.0
