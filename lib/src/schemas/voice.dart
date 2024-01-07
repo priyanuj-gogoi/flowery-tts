@@ -19,7 +19,7 @@ class Voice {
   /// {@endtemplate}
   factory Voice.fromMap(Map<String, dynamic> map) => Voice(
         name: map['name'] as String,
-        gender: map['gender'] as String == 'Male' ? Gender.Male : Gender.Female,
+        gender: Gender.values.byName(map['gender'] as String),
         source: map['source'] as String,
         language: VoiceLanguageInfo.fromMap(
           map['language'] as Map<String, dynamic>,
