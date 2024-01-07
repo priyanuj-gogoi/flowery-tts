@@ -51,7 +51,7 @@ jobs:
         run: .github/scripts/enable_commented_lints.dart
 
       - name: Install dependencies
-        run: dart pub get -v
+        run: dart pub get
 
       - name: Analyze code
         run: dart analyze --fatal-infos
