@@ -8,6 +8,13 @@ on:
       - '.github/workflows/*.yaml'
       - analysis_options.yaml
       - pubspec.yaml
+  pull_request:
+    branches: parent
+    paths:
+      - '**.dart'
+      - '.github/workflows/*.yaml'
+      - analysis_options.yaml
+      - pubspec.yaml
 
 jobs:
   format: 
