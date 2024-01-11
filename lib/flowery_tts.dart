@@ -1,4 +1,5 @@
 export 'src/enums.dart';
+export 'src/flowery.dart';
 
 // API Models
 export 'src/schemas/voice.dart';
