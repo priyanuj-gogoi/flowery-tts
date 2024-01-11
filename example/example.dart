@@ -20,10 +20,7 @@ void main() async {
   const flowery = Flowery();
 
   // Convert the given text.
-  final audio = await flowery.tts(
-    text: paragraph,
-    voice: 'Anna',
-  );
+  final audio = await flowery.tts(text: paragraph, voice: 'Anna');
 
   // Convert the raw audio output as an audio file.
   final file = File('audio.mp3')..writeAsBytesSync(audio);
