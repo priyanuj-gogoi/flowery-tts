@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flowery_tts/src/enums.dart';
+import 'package:flowery_tts/src/exceptions.dart';
 import 'package:flowery_tts/src/schemas/voices_response.dart';
 
 import 'package:http/http.dart';
@@ -18,7 +19,24 @@ class Flowery {
     );
 
     if (response.statusCode != 200) {
-      // TODO(priyanuj-gogoi): Add HTTP error handlers.
+      final BaseRequest(:method, :url) = response.request!;
+      final body = jsonDecode(response.body) as Map<String, dynamic>;
+
+      throw switch (response.statusCode) {
+        400 => InvalidArgumentsException(body['error'] as String),
+        404 => FloweryException('Invalid request route: "$url".'),
+        405 => FloweryException(
+            'HTTP $method method isn\'t allowed on route "$url".',
+          ),
+        422 => ValidationException(
+            'Request to "$url" has failed due to some fields were '
+            'not provided or were given invalid inputs.',
+          ),
+        500 => FloweryException(body['error'] as String),
+        _ => const FloweryException(
+            'An unknown error has occurred while processing this request.',
+          )
+      };
     }
 
     return response;
