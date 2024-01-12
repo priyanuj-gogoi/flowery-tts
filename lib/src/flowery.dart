@@ -40,7 +40,7 @@ class Flowery {
   /// Defaults to [AudioFormat.mp3].
   ///
   /// **speed**: The speed of the speech. Value must be or in
-  /// between `0.5` & `10`. Defaults to `1.0`.
+  /// between `0.5` & `100`. Defaults to `1.0`.
   Future<Uint8List> tts({
     required String text,
     required String voice,
