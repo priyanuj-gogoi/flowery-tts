@@ -16,7 +16,6 @@ class InvalidArgumentsException extends FloweryException {
   /// Create a new [InvalidArgumentsException] instance.
   const InvalidArgumentsException(super.error);
 
-  /// {@macro flowery.toString}
   @override
   String toString() => 'InvalidArgumentsException: $error';
 }
@@ -26,7 +25,6 @@ class ValidationException extends FloweryException {
   /// Create a new [ValidationException] instance.
   const ValidationException(super.error);
 
-  /// {@macro flowery.toString}
   @override
   String toString() => 'ValidationException: $error';
 }
