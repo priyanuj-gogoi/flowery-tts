@@ -46,6 +46,20 @@ class VoicesResponse {
   late final speakers =
       voices.map<String>((voice) => voice.name).toSet().toList();
 
+  /// Fetch a [Voice] instance using it's `name` (case-insensitive).
+  ///
+  /// Return `null`, if it doesn't exists.
+  Voice? getVoice(String name) {
+    try {
+      return voices.firstWhere(
+        (voice) => voice.name.toLowerCase() == name.toLowerCase(),
+      );
+      // ignore: avoid_catching_errors
+    } on StateError {
+      return null;
+    }
+  }
+
   /// {@macro flowery.toMap}
   Map<String, Object> toMap() => {
         'count': count,
