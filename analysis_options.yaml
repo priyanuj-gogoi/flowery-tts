@@ -45,7 +45,7 @@ linter:
     - avoid_type_to_string
     - avoid_types_as_parameter_names
     - avoid_types_on_closure_parameters
-    # An unreleased lint as of current Dart 3.2.5
+    # An unreleased lint as of current Dart 3.2.4
     # Enable it locally on release.
     # - avoid_unstable_final_fields
     - avoid_unused_constructor_parameters
