@@ -3,21 +3,17 @@ import 'package:flowery_tts/src/schemas/voice_language_info.dart';
 
 /// A representation of `TTSVoice` schema.
 class Voice {
-  /// {@template flowery.voice}
-  /// Create a new [Voice] instance
-  /// {@endtemplate}.
-  Voice({
+  Voice._({
     required this.name,
     required this.gender,
     required this.source,
     required this.language,
   });
 
-  /// {@macro flowery.voice}
   /// {@template flowery.fromMap}
-  /// from a [Map].
+  /// Create a new instance of this class from a Map.
   /// {@endtemplate}
-  factory Voice.fromMap(Map<String, dynamic> map) => Voice(
+  factory Voice.fromMap(Map<String, dynamic> map) => Voice._(
         name: map['name'] as String,
         gender: Gender.values.byName(map['gender'] as String),
         source: map['source'] as String,
