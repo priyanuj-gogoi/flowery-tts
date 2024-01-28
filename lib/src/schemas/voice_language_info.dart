@@ -1,13 +1,10 @@
 /// A representation of `TTSVoiceLanguageInfo` schema.
 class VoiceLanguageInfo {
-  /// {@template flowery.voiceLanguageInfo}
-  /// Create a new [VoiceLanguageInfo] instance
-  /// {@endtemplate}.
-  VoiceLanguageInfo({required this.name, required this.code});
+  VoiceLanguageInfo._({required this.name, required this.code});
 
-  /// {@macro flowery.voiceLanguageInfo} {@macro flowery.fromMap}
+  /// {@macro flowery.fromMap}
   factory VoiceLanguageInfo.fromMap(Map<String, dynamic> map) =>
-      VoiceLanguageInfo(
+      VoiceLanguageInfo._(
         name: map['name'] as String,
         code: map['code'] as String,
       );

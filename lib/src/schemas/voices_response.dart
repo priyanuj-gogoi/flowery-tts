@@ -2,13 +2,10 @@ import 'package:flowery_tts/src/schemas/voice.dart';
 
 /// A representation of `TTSVoicesResponse` schema.
 class VoicesResponse {
-  /// {@template flowery.voicesResponse}
-  /// Create a new [VoicesResponse] instance
-  /// {@endtemplate}.
-  VoicesResponse({required this.count, required this.voices});
+  VoicesResponse._({required this.count, required this.voices});
 
-  /// {@macro flowery.voicesResponse} {@macro flowery.fromMap}
-  factory VoicesResponse.fromMap(Map<String, dynamic> map) => VoicesResponse(
+  /// {@macro flowery.fromMap}
+  factory VoicesResponse.fromMap(Map<String, dynamic> map) => VoicesResponse._(
         count: map['count'] as int,
         voices: [
           for (final voice in map['voices'] as List)
