@@ -60,7 +60,7 @@ class VoicesResponse {
   /// {@macro flowery.toMap}
   Map<String, Object> toMap() => {
         'count': count,
-        'voices': voices..forEach((voice) => voice.toMap()),
+        'voices': [for (final voice in voices) voice.toMap()],
       };
 
   /// {@macro flowery.toString}
