@@ -43,19 +43,9 @@ class VoicesResponse {
   late final speakers =
       voices.map<String>((voice) => voice.name).toSet().toList();
 
-  /// Fetch a [Voice] instance using it's `name` (case-insensitive).
-  ///
-  /// Return `null`, if it doesn't exists.
-  Voice? getVoice(String name) {
-    try {
-      return voices.firstWhere(
-        (voice) => voice.name.toLowerCase() == name.toLowerCase(),
-      );
-      // ignore: avoid_catching_errors
-    } on StateError {
-      return null;
-    }
-  }
+  /// {@macro flowery.getVoice}
+  @Deprecated('Use get operator instead.')
+  Voice? getVoice(String name) => this[name];
 
   /// {@macro flowery.toMap}
   Map<String, Object> toMap() => {
@@ -66,4 +56,16 @@ class VoicesResponse {
   /// {@macro flowery.toString}
   @override
   String toString() => 'VoicesResponse(count: $count, voices: $voices)';
+
+  /// {@template flowery.getVoice}
+  /// Fetch a [Voice] instance using it's `name` (case-insensitive).
+  ///
+  /// Return `null`, if it doesn't exists.
+  /// {@endtemplate}
+  Voice? operator [](String name) {
+    for (final voice in voices) {
+      if (voice.name.toLowerCase() == name.toLowerCase()) return voice;
+    }
+    return null;
+  }
 }
