@@ -1,6 +1,7 @@
 /// A representation of `TTSVoiceLanguageInfo` schema.
 class VoiceLanguageInfo {
-  VoiceLanguageInfo._({required this.name, required this.code});
+  VoiceLanguageInfo._({required this.name, required this.code})
+      : _nameSplits = name.split('(');
 
   /// {@macro flowery.fromMap}
   factory VoiceLanguageInfo.fromMap(Map<String, dynamic> map) =>
@@ -15,13 +16,13 @@ class VoiceLanguageInfo {
   /// Code name of the language.
   final String code;
 
-  late final _nameSplits = name.split('(');
+  final List<String> _nameSplits;
 
   /// Name of the language without country name.
-  late final nameWithoutCountry = _nameSplits.first.trimRight();
+  String get nameWithoutCountry => _nameSplits.first.trimRight();
 
   /// Name of the country.
-  late final country =
+  String? get country =>
       _nameSplits.length == 1 ? null : _nameSplits.last.split(')').first;
 
   /// {@macro flowery.toMap}

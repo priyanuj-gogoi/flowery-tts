@@ -2,7 +2,7 @@ import 'package:flowery_tts/src/schemas/voice.dart';
 
 /// A representation of `TTSVoicesResponse` schema.
 class VoicesResponse {
-  VoicesResponse._({required this.count, required this.voices});
+  const VoicesResponse._({required this.count, required this.voices});
 
   /// {@macro flowery.fromMap}
   factory VoicesResponse.fromMap(Map<String, dynamic> map) => VoicesResponse._(
@@ -20,28 +20,32 @@ class VoicesResponse {
   final List<Voice> voices;
 
   /// A list of female voices.
-  late final femaleVoices = voices.where((voice) => voice.isFemale).toList();
+  List<Voice> get femaleVoices => [
+        for (final voice in voices)
+          if (voice.isFemale) voice,
+      ];
 
   /// A list of male voices.
-  late final maleVoices = voices.where((voice) => voice.isMale).toList();
+  List<Voice> get maleVoices => [
+        for (final voice in voices)
+          if (voice.isMale) voice,
+      ];
 
   /// A list of language codes.
-  late final languageCodes =
-      voices.map<String>((voice) => voice.language.code).toSet().toList();
+  List<String> get languageCodes =>
+      {for (final voice in voices) voice.language.code}.toList();
 
   /// A list of language names.
-  late final languageNames = voices
-      .map<String>((voice) => voice.language.nameWithoutCountry)
-      .toSet()
-      .toList();
+  List<String> get languageNames =>
+      {for (final voice in voices) voice.language.nameWithoutCountry}.toList();
 
   /// A list of voice sources.
-  late final sources =
-      voices.map<String>((voice) => voice.source).toSet().toList();
+  List<String> get sources =>
+      {for (final voice in voices) voice.source}.toList();
 
   /// A list of speaker names.
-  late final speakers =
-      voices.map<String>((voice) => voice.name).toSet().toList();
+  List<String> get speakers =>
+      {for (final voice in voices) voice.name}.toList();
 
   /// {@macro flowery.getVoice}
   @Deprecated('Use get operator instead.')

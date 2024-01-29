@@ -3,7 +3,7 @@ import 'package:flowery_tts/src/schemas/voice_language_info.dart';
 
 /// A representation of `TTSVoice` schema.
 class Voice {
-  Voice._({
+  const Voice._({
     required this.name,
     required this.gender,
     required this.source,
@@ -35,10 +35,10 @@ class Voice {
   final VoiceLanguageInfo language;
 
   /// Whether this voice's gender is male.
-  late final isMale = gender == Gender.Male;
+  bool get isMale => gender == Gender.Male;
 
   /// Whether this voice's gender is female.
-  late final isFemale = !isMale;
+  bool get isFemale => gender == Gender.Female;
 
   /// {@template flowery.toMap}
   /// A map representation of this object.
