@@ -97,5 +97,5 @@ class Flowery {
   static const apiVersion = '1';
 
   /// The current version of this package.
-  static const version = '1.0.0';
+  static const version = '1.1.0';
 }

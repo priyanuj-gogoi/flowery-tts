@@ -1,67 +1,48 @@
 ## Flowery TTS | API Wrapper
 
-[**Flowery TTS**][1] is a free Text-to-Speech generator.
+[![Dart SDK][Dart]](https://dart.dev/get-dart)
+[![Flutter SDK][Flutter]](https://docs.flutter.dev/get-started/install)
+[![Package Version][Version]](https://pub.dev/packages/flowery_tts/versions/1.1.0)
+[![Pub Likes][Likes]][Pub Score]
+[![Pub Points][Points]][Pub Score]
+[![Pub Popularity][Popularity]][Pub Score]
+
+[**Flowery TTS**](https://flowery.pw) is a free Text-to-Speech generator.
 This package is an unofficial wrapper of Flowery TTS API
-for the [Dart][2] programming language.
+for the [Dart](https://dart.dev) programming language.
 
 ### Features
 
 - Complete endpoint coverage.
-- Fully documented Dart package.
+- Fully documented.
 - Supports in all platforms.
+- High-level & class-based.
 
-### Installation
+### Resources
 
-To use this package in your Dart/Flutter project, you must have:
-
-- Dart SDK - `3.0.0` or above.
-- Flutter SDK - `3.10.0` or above.
-
-Then, run the below command to install the package.
-
-```sh
-# For Dart
-dart pub add flowery_tts
-
-# For Flutter
-flutter pub add flowery_tts
-```
-
-Now, confirm the following entry in your project `pubspec.yaml` file.
-
-```yaml
-dependencies:
-  flowery_tts: 1.0.0
-```
-
-Finally, import the package in your project file.
-
-```dart
-import 'package:flowery_tts/flowery_tts.dart';
-```
-
-### Documentation
-
-- [Package API Docs][3]
-- [Examples][4]
+- [Package API Reference](https://pub.dev/documentation/flowery_tts/1.1.0)
+- [Examples](https://github.com/priyanuj-gogoi/flowery-tts/tree/1.1.0/example/example.dart)
+- [API Documentation](https://flowery.pw/docs)
+- [OpenAPI Specification](https://editor.swagger.io?url=https://api.flowery.pw/openapi.json)
 
 ### License
 
-This package is licensed under the terms of [MIT][5].
-For details, check out the [license][6].
+This package is licensed under the terms of [MIT](https://en.wikipedia.org/wiki/MIT_License).
+For details, check out the [license](https://github.com/priyanuj-gogoi/flowery-tts/tree/1.1.0/LICENSE).
 
 ### Acknowledgement
 
 This package is neither officially created, affiliated with,
-endorsed, nor sponsored by Flowery API team. All credits goes towards
-[Priyanuj Gogoi][7] and the [contributors][8] who were involved for the
-development & maintainance of this package.
+endorsed, nor sponsored by Flowery API team. All credits goes to
+[Priyanuj Gogoi](https://github.com/priyanuj-gogoi) and the
+[contributors](https://github.com/priyanuj-gogoi/flowery-tts/contributors)
+who were involved for the development & maintainance of this package.
 
-[1]: https://flowery.pw
-[2]: https://dart.dev
-[3]: https://pub.dev/documentation/flowery_tts/1.0.0
-[4]: https://github.com/priyanuj-gogoi/flowery-tts/tree/1.0.0/example/example.dart
-[5]: https://en.wikipedia.org/wiki/MIT_License
-[6]: https://github.com/priyanuj-gogoi/flowery-tts/tree/1.0.0/LICENSE
-[7]: https://github.com/priyanuj-gogoi
-[8]: https://github.com/priyanuj-gogoi/flowery-tts/contributors
+[Dart]: https://img.shields.io/badge/Dart-%5E3.0.0-blue
+[Flutter]: https://img.shields.io/badge/Flutter-%5E3.10.0-blue
+[Version]: https://img.shields.io/badge/Version-1.1.0-blue
+[Likes]: https://img.shields.io/pub/likes/flowery_tts?label=Pub%20Likes
+[Points]: https://img.shields.io/pub/points/flowery_tts?label=Pub%20Points
+[Popularity]: https://img.shields.io/pub/popularity/flowery_tts?label=Pub%20Popularity
+[Pub Score]: https://pub.dev/packages/flowery_tts/score
+
