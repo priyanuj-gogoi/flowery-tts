@@ -82,7 +82,7 @@ class Flowery {
   /// Get information about Flowery voices.
   Future<VoicesResponse> voices() async {
     final response = await _fetch('tts/voices');
-    final json = jsonDecode(response.body) as Map<String, dynamic>;
+    final json = jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
 
     return VoicesResponse.fromMap(json);
   }
