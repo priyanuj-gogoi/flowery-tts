@@ -1,7 +1,7 @@
 import 'package:flowery_tts/src/enums.dart';
 import 'package:flowery_tts/src/schemas/voice_language_info.dart';
 
-/// A representation of `TTSVoice` schema.
+/// A model of `TTSVoice` schema which contains voice information.
 class Voice {
   const Voice._({
     required this.name,
@@ -22,16 +22,16 @@ class Voice {
         ),
       );
 
-  /// Name of the speaker.
+  /// Name of the voice speaker.
   final String name;
 
-  /// The type of voice gender.
+  /// The gender of this voice.
   final Gender gender;
 
-  /// Name of the voice source; where it was taken from.
+  /// Name of the source from where this voice was taken.
   final String source;
 
-  /// The assigned language of the voice.
+  /// The assigned language of this voice.
   final VoiceLanguageInfo language;
 
   /// Whether this voice's gender is male.
@@ -50,8 +50,8 @@ class Voice {
         'language': language.toMap(),
       };
 
-  // The use of same first doc line of `toString()` here is intentional.
-  // This is for hiding the other `toString()` default documentations.
+  // The reuse of default toString()'s first documentation line
+  // is intentional here to hide it's other inherited parts.
 
   /// {@template flowery.toString}
   /// A string representation of this object.

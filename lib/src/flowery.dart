@@ -7,9 +7,9 @@ import 'package:flowery_tts/src/schemas/voices_response.dart';
 
 import 'package:http/http.dart';
 
-/// Main class for interacting with the API.
+/// The main class of this library.
 class Flowery {
-  /// Create a new [Flowery] instance.
+  /// Create a new instance of this class.
   const Flowery();
 
   Future<Response> _fetch(String path, [Map<String, String>? query]) async {
@@ -42,29 +42,30 @@ class Flowery {
     return response;
   }
 
-  /// Convert the provided `text` into speech (mono audio).
+  /// Convert the provided `text` into speech.
   ///
-  /// **text** - The text to convert (max. `2000` characters limit).
-  ///
-  /// **voice** - Name of the voice speaker.
-  ///
-  /// **translate** - Whether to translate non-english `text` to
-  /// English speech. Defaults to `false`.
-  ///
-  /// **silence** - Wrap the speech with a leading & trailing silent sound.
-  /// The duration must not be greater than `10` seconds. Defaults to `0`.
-  ///
-  /// **audioFormat** - The format of audio to output.
-  /// Defaults to [AudioFormat.mp3].
-  ///
-  /// **speed**: The speed of the speech. Value must be or in
-  /// between `0.5` & `100`. Defaults to `1.0`.
+  /// The output of audio type is `mono`.
   Future<Uint8List> tts({
+    // The text to convert. It has a maximum of 2000 characters length limit.
     required String text,
+
+    // Name of the voice speaker.
     required String voice,
+
+    // Whether to translate the given non-english language text
+    // to English. By default, it's false.
     bool? translate,
+
+    // A specific duration of leading & trailing silence sound to wrap
+    // to the speech. The duration must not be more than 10 seconds.
+    // By default, it's 0.
     Duration? silence,
+
+    // The format of audio type to output. By default, it's mp3.
     AudioFormat? audioFormat,
+
+    // The speed rate of the speech. Value must be in-between
+    // 0.5 to 100. By default, it's 1.0.
     double? speed,
   }) async {
     final response = await _fetch('tts', {
@@ -79,10 +80,18 @@ class Flowery {
     return response.bodyBytes;
   }
 
-  /// Get information about Flowery voices.
+  /// Fetch information of all available voices.
   Future<VoicesResponse> voices() async {
     final response = await _fetch('tts/voices');
-    final json = jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
+
+    // Here, http package chooses ISO-8859-1 encoding instead of UTF-8 due to
+    // the charset parameter missing in Content-Type response header and which
+    // in turn leads to some characters not being correctly represented.
+    // For example, å gets converted to Ã¥.
+    //
+    // To mitigate this issue, we've explicitly decoded raw UTF-8 bytes.
+    final json =
+        jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
 
     return VoicesResponse.fromMap(json);
   }
