@@ -1,6 +1,7 @@
 import 'package:flowery_tts/src/schemas/voice.dart';
 
-/// A representation of `TTSVoicesResponse` schema.
+/// A model of `TTSVoicesResponse` schema which
+/// contains information of all voices.
 class VoicesResponse {
   const VoicesResponse._({required this.count, required this.voices});
 
@@ -13,10 +14,13 @@ class VoicesResponse {
         ],
       );
 
-  /// The total number of voices. Prefer this over `voices.length`.
+  /// The total instances of [Voice] in [voices].
+  ///
+  /// **Note:** This value is returned by the API. Therefore, custom [Voice]
+  /// instances added in [voices] list aren't considered.
   final int count;
 
-  /// A list of voices.
+  /// A list of all available voices.
   final List<Voice> voices;
 
   /// A list of female voices.

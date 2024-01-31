@@ -1,4 +1,5 @@
-/// A representation of `TTSVoiceLanguageInfo` schema.
+/// A model of `TTSVoiceLanguageInfo` schema which
+/// contains language information of a [Voice].
 class VoiceLanguageInfo {
   VoiceLanguageInfo._({required this.name, required this.code})
       : _nameSplits = name.split('(');
@@ -10,7 +11,7 @@ class VoiceLanguageInfo {
         code: map['code'] as String,
       );
 
-  /// Name of the language; with optional country name.
+  /// Name of the language with optionally country name.
   final String name;
 
   /// Code name of the language.
