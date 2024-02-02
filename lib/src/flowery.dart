@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:html' if (dart.library.io) 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flowery_tts/src/enums.dart';
@@ -18,21 +19,24 @@ class Flowery {
       headers: {'user-agent': 'flowery_tts/$version'},
     );
 
-    if (response.statusCode != 200) {
+    if (response.statusCode != HttpStatus.ok) {
       final BaseRequest(:method, :url) = response.request!;
       final body = jsonDecode(response.body) as Map<String, dynamic>;
 
       throw switch (response.statusCode) {
-        400 => InvalidArgumentsException(body['error'] as String),
-        404 => FloweryException('Invalid request route: "$url".'),
-        405 => FloweryException(
+        HttpStatus.badRequest =>
+          InvalidArgumentsException(body['error'] as String),
+        HttpStatus.notFound =>
+          FloweryException('Invalid request route: "$url".'),
+        HttpStatus.methodNotAllowed => FloweryException(
             'HTTP $method method isn\'t allowed on route "$url".',
           ),
-        422 => ValidationException(
+        HttpStatus.unprocessableEntity => ValidationException(
             'Request to "$url" has failed due to some fields were '
             'not provided or were given invalid inputs.',
           ),
-        500 => FloweryException(body['error'] as String),
+        HttpStatus.internalServerError =>
+          FloweryException(body['error'] as String),
         _ => const FloweryException(
             'An unknown error has occurred while processing this request.',
           )
@@ -68,13 +72,25 @@ class Flowery {
     // 0.5 to 100. By default, it's 1.0.
     double? speed,
   }) async {
+    if (text.trimLeft().isEmpty) {
+      throw const InvalidArgumentsException(
+        'No valid text was provided in "text" parameter.',
+      );
+    }
+
+    if (voice.trimLeft().isEmpty) {
+      throw const InvalidArgumentsException(
+        'No valid voice was provided in "voice" parameter.',
+      );
+    }
+
     final response = await _fetch('tts', {
       'text': text,
       'voice': voice,
       if (translate != null) 'translate': translate.toString(),
       if (silence != null) 'silence': silence.inMilliseconds.toString(),
       if (audioFormat != null) 'audio_format': audioFormat.name,
-      if (speed != null) 'speed': speed.toString(),
+      if (speed != null) 'speed': speed.toStringAsFixed(1),
     });
 
     return response.bodyBytes;
