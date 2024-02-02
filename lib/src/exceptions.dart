@@ -1,6 +1,11 @@
-/// A representation of "TTSError" schema.
+/// The base class of all exceptions of this library.
+///
+/// This exception is based of `TTSVoice` schema and can also
+/// be thrown in cases when any general error occurs.
 class FloweryException implements Exception {
-  /// Create a new [FloweryException] instance.
+  /// {@template flowery.exception}
+  /// Create a new instance of this exception.
+  /// {@endtemplate}
   const FloweryException(this.error);
 
   /// The message describing about this exception.
@@ -11,18 +16,22 @@ class FloweryException implements Exception {
   String toString() => 'FloweryException: $error';
 }
 
-/// A representation of "TTSInvalidArguments" schema.
+/// Thrown when invalid data were provided in the API input.
+///
+/// This exception is based of `TTSInvalidArguments` schema.
 class InvalidArgumentsException extends FloweryException {
-  /// Create a new [InvalidArgumentsException] instance.
+  /// {@macro flowery.exception}
   const InvalidArgumentsException(super.error);
 
   @override
   String toString() => 'InvalidArgumentsException: $error';
 }
 
-/// A representation of "ValidationError" schema.
+/// Thrown when a required field/input is not provided to the API.
+///
+/// This exception is based of `TTSValidationException` schema.
 class ValidationException extends FloweryException {
-  /// Create a new [ValidationException] instance.
+  /// {@macro flowery.exception}.
   const ValidationException(super.error);
 
   @override
