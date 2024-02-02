@@ -16,7 +16,7 @@ for the [Dart](https://dart.dev) programming language.
 - Complete endpoint coverage.
 - Fully documented.
 - Supports in all platforms.
-- High-level & class-based.
+- Class-based.
 
 ### Resources
 
