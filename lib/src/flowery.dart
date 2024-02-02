@@ -80,7 +80,7 @@ class Flowery {
 
     if (voice.trimLeft().isEmpty) {
       throw const InvalidArgumentsException(
-        'No valid voice was provided in "voice" parameter.',
+        'You\'ve provided an empty string in "voice" parameter.',
       );
     }
 
