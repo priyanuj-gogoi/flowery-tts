@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the VoicesResponse constructor from Class VoicesResponse from the flowery_tts library, for the Dart programming language.">
-  <title>VoicesResponse constructor - VoicesResponse - flowery_tts library - Dart API</title>
+  <meta name="description" content="API docs for the operator [] method from the VoicesResponse class, for the Dart programming language.">
+  <title>operator [] method - VoicesResponse class - flowery_tts library - Dart API</title>
 
 
   
@@ -31,9 +31,9 @@
     <li><a href="../../index.html">flowery_tts</a></li>
     <li><a href="../../flowery_tts/flowery_tts-library.html">flowery_tts</a></li>
     <li><a href="../../flowery_tts/VoicesResponse-class.html">VoicesResponse</a></li>
-    <li class="self-crumb">VoicesResponse constructor</li>
+    <li class="self-crumb">operator [] method</li>
   </ol>
-  <div class="self-name">VoicesResponse</div>
+  <div class="self-name">operator []</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -57,27 +57,36 @@
       data-above-sidebar="flowery_tts&#47;VoicesResponse-class-sidebar.html"
       data-below-sidebar="">
       <div>
-  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.0.0/lib/src/schemas/voices_response.dart#L8"><span class="material-symbols-outlined">description</span></a></div>
-<h1><span class="kind-constructor">VoicesResponse</span> constructor 
+  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.1.0/lib/src/schemas/voices_response.dart#L73"><span class="material-symbols-outlined">description</span></a></div>
+<h1><span class="kind-method">operator []</span> method 
 </h1></div>
 
     <section class="multi-line-signature">
       
-      <span class="name ">VoicesResponse</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="-param-count">{<span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.4/dart-core/int-class.html">int</a></span> <span class="parameter-name">count</span>, </span></li>
-<li><span class="parameter" id="-param-voices"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.4/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../flowery_tts/Voice-class.html">Voice</a></span>&gt;</span></span> <span class="parameter-name">voices</span>}</span></li>
-</ol>)
-    </section>
 
+<span class="returntype"><a href="../../flowery_tts/Voice-class.html">Voice</a>?</span>
+<span class="name ">operator []</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="[]-param-name"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.6/dart-core/String-class.html">String</a></span> <span class="parameter-name">name</span></span></li>
+</ol>)
+
+      
+
+    </section>
     
 <section class="desc markdown">
-  <p>Create a new <a href="../../flowery_tts/VoicesResponse-class.html">VoicesResponse</a> instance.</p>
+  <p>Fetch a <a href="../../flowery_tts/Voice-class.html">Voice</a> instance using it's <code>name</code> (case-insensitive).</p>
+<p>Return <code>null</code>, if it doesn't exists.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">VoicesResponse</code></pre>
+  <pre class="language-dart"><code class="language-dart">Voice? operator [](String name) {
+  for (final voice in voices) {
+    if (voice.name.toLowerCase() == name.toLowerCase()) return voice;
+  }
+  return null;
+}</code></pre>
 </section>
 
 
@@ -95,13 +104,13 @@
     <li><a href="../../index.html">flowery_tts</a></li>
     <li><a href="../../flowery_tts/flowery_tts-library.html">flowery_tts</a></li>
     <li><a href="../../flowery_tts/VoicesResponse-class.html">VoicesResponse</a></li>
-    <li class="self-crumb">VoicesResponse constructor</li>
+    <li class="self-crumb">operator [] method</li>
 </ol>
 
 
     <h5>VoicesResponse class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
-  </div><!--/.sidebar-offcanvas-left-->
+  </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
   </div><!--/.sidebar-offcanvas-->
@@ -111,7 +120,7 @@
 <footer>
   <span class="no-break">
     flowery_tts
-      1.0.0
+      1.1.0
   </span>
 
   

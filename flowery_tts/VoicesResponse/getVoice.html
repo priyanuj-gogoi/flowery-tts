@@ -31,7 +31,7 @@
     <li><a href="../../index.html">flowery_tts</a></li>
     <li><a href="../../flowery_tts/flowery_tts-library.html">flowery_tts</a></li>
     <li><a href="../../flowery_tts/VoicesResponse-class.html">VoicesResponse</a></li>
-    <li class="self-crumb">getVoice method</li>
+    <li class="self-crumb"><span class="deprecated">getVoice</span> method</li>
   </ol>
   <div class="self-name">getVoice</div>
   <form class="search navbar-right" role="search">
@@ -57,15 +57,20 @@
       data-above-sidebar="flowery_tts&#47;VoicesResponse-class-sidebar.html"
       data-below-sidebar="">
       <div>
-  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.0.0/lib/src/schemas/voices_response.dart#L52"><span class="material-symbols-outlined">description</span></a></div>
+  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.1.0/lib/src/schemas/voices_response.dart#L56"><span class="material-symbols-outlined">description</span></a></div>
 <h1><span class="kind-method">getVoice</span> method 
 </h1></div>
 
     <section class="multi-line-signature">
       
+  <div>
+    <ol class="annotation-list">
+        <li>@<a href="https://api.dart.dev/stable/3.2.6/dart-core/Deprecated-class.html">Deprecated</a>(&#39;Use get operator instead.&#39;)</li>
+    </ol>
+  </div>
 
 <span class="returntype"><a href="../../flowery_tts/Voice-class.html">Voice</a>?</span>
-<span class="name ">getVoice</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="getVoice-param-name"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.4/dart-core/String-class.html">String</a></span> <span class="parameter-name">name</span></span></li>
+<span class="name deprecated">getVoice</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="getVoice-param-name"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.6/dart-core/String-class.html">String</a></span> <span class="parameter-name">name</span></span></li>
 </ol>)
 
       
@@ -81,16 +86,8 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Voice? getVoice(String name) {
-  try {
-    return voices.firstWhere(
-      (voice) =&gt; voice.name.toLowerCase() == name.toLowerCase(),
-    );
-    &#47;&#47; ignore: avoid_catching_errors
-  } on StateError {
-    return null;
-  }
-}</code></pre>
+  <pre class="language-dart"><code class="language-dart">@Deprecated(&#39;Use get operator instead.&#39;)
+Voice? getVoice(String name) =&gt; this[name];</code></pre>
 </section>
 
 
@@ -108,7 +105,7 @@
     <li><a href="../../index.html">flowery_tts</a></li>
     <li><a href="../../flowery_tts/flowery_tts-library.html">flowery_tts</a></li>
     <li><a href="../../flowery_tts/VoicesResponse-class.html">VoicesResponse</a></li>
-    <li class="self-crumb">getVoice method</li>
+    <li class="self-crumb"><span class="deprecated">getVoice</span> method</li>
 </ol>
 
 
@@ -124,7 +121,7 @@
 <footer>
   <span class="no-break">
     flowery_tts
-      1.0.0
+      1.1.0
   </span>
 
   

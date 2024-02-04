@@ -57,26 +57,33 @@
       data-above-sidebar="flowery_tts&#47;Voice-class-sidebar.html"
       data-below-sidebar="">
       <div>
-  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.0.0/lib/src/schemas/voice.dart#L45"><span class="material-symbols-outlined">description</span></a></div>
+  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.1.0/lib/src/schemas/voice.dart#L41"><span class="material-symbols-outlined">description</span></a></div>
 <h1><span class="kind-property">isFemale</span> property 
 </h1></div>
 
-        <section class="multi-line-signature">
-          
-          <a href="https://api.dart.dev/stable/3.2.4/dart-core/bool-class.html">bool</a>
-          <span class="name ">isFemale</span>
-          <div class="features"><span class="feature">late</span><span class="feature">final</span></div>
 
-        </section>
         
+<section id="getter">
+
+<section class="multi-line-signature">
+  
+  <span class="returntype"><a href="https://api.dart.dev/stable/3.2.6/dart-core/bool-class.html">bool</a></span>
+  <span class="name ">isFemale</span>
+  
+
+</section>
+
+
 <section class="desc markdown">
   <p>Whether this voice's gender is female.</p>
 </section>
 
-        
+
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">late final isFemale = !isMale;</code></pre>
+  <pre class="language-dart"><code class="language-dart">bool get isFemale =&gt; gender == Gender.Female;</code></pre>
+</section>
+
 </section>
 
 
@@ -110,7 +117,7 @@
 <footer>
   <span class="no-break">
     flowery_tts
-      1.0.0
+      1.1.0
   </span>
 
   

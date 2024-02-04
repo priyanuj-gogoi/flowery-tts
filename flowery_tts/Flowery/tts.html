@@ -57,20 +57,20 @@
       data-above-sidebar="flowery_tts&#47;Flowery-class-sidebar.html"
       data-below-sidebar="">
       <div>
-  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.0.0/lib/src/flowery.dart#L62"><span class="material-symbols-outlined">description</span></a></div>
+  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.1.0/lib/src/flowery.dart#L52"><span class="material-symbols-outlined">description</span></a></div>
 <h1><span class="kind-method">tts</span> method 
 </h1></div>
 
     <section class="multi-line-signature">
       
 
-<span class="returntype"><a href="https://api.dart.dev/stable/3.2.4/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.2.4/dart-typed_data/Uint8List-class.html">Uint8List</a></span>&gt;</span></span>
-<span class="name ">tts</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="tts-param-text">{<span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.4/dart-core/String-class.html">String</a></span> <span class="parameter-name">text</span>, </span></li>
-<li><span class="parameter" id="tts-param-voice"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.4/dart-core/String-class.html">String</a></span> <span class="parameter-name">voice</span>, </span></li>
-<li><span class="parameter" id="tts-param-translate"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.4/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">translate</span>, </span></li>
-<li><span class="parameter" id="tts-param-silence"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.4/dart-core/Duration-class.html">Duration</a>?</span> <span class="parameter-name">silence</span>, </span></li>
+<span class="returntype"><a href="https://api.dart.dev/stable/3.2.6/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.2.6/dart-typed_data/Uint8List-class.html">Uint8List</a></span>&gt;</span></span>
+<span class="name ">tts</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="tts-param-text">{<span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.6/dart-core/String-class.html">String</a></span> <span class="parameter-name">text</span>, </span></li>
+<li><span class="parameter" id="tts-param-voice"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.6/dart-core/String-class.html">String</a></span> <span class="parameter-name">voice</span>, </span></li>
+<li><span class="parameter" id="tts-param-translate"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.6/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">translate</span>, </span></li>
+<li><span class="parameter" id="tts-param-silence"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.6/dart-core/Duration-class.html">Duration</a>?</span> <span class="parameter-name">silence</span>, </span></li>
 <li><span class="parameter" id="tts-param-audioFormat"><span class="type-annotation"><a href="../../flowery_tts/AudioFormat.html">AudioFormat</a>?</span> <span class="parameter-name">audioFormat</span>, </span></li>
-<li><span class="parameter" id="tts-param-speed"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.4/dart-core/double-class.html">double</a>?</span> <span class="parameter-name">speed</span>}</span></li>
+<li><span class="parameter" id="tts-param-speed"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.6/dart-core/double-class.html">double</a>?</span> <span class="parameter-name">speed</span>}</span></li>
 </ol>)
 
       
@@ -78,17 +78,8 @@
     </section>
     
 <section class="desc markdown">
-  <p>Convert the provided <code>text</code> into speech (mono audio).</p>
-<p><strong>text</strong> - The text to convert (max. <code>2000</code> characters limit).</p>
-<p><strong>voice</strong> - Name of the voice speaker.</p>
-<p><strong>translate</strong> - Whether to translate non-english <code>text</code> to
-English speech. Defaults to <code>false</code>.</p>
-<p><strong>silence</strong> - Wrap the speech with a leading &amp; trailing silent sound.
-The duration must not be greater than <code>10</code> seconds. Defaults to <code>0</code>.</p>
-<p><strong>audioFormat</strong> - The format of audio to output.
-Defaults to <a href="../../flowery_tts/AudioFormat.html">AudioFormat.mp3</a>.</p>
-<p><strong>speed</strong>: The speed of the speech. Value must be or in
-between <code>0.5</code> &amp; <code>100</code>. Defaults to <code>1.0</code>.</p>
+  <p>Convert the provided <code>text</code> into speech.</p>
+<p>The output of audio type is <code>mono</code>.</p>
 </section>
 
 
@@ -96,20 +87,47 @@ between <code>0.5</code> &amp; <code>100</code>. Defaults to <code>1.0</code>.</
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;Uint8List&gt; tts({
+  &#47;&#47; The text to convert. It has a maximum of 2000 characters length limit.
   required String text,
+
+  &#47;&#47; Name of the voice speaker.
   required String voice,
+
+  &#47;&#47; Whether to translate the given non-english language text
+  &#47;&#47; to English. By default, it&#39;s false.
   bool? translate,
+
+  &#47;&#47; A specific duration of leading &amp; trailing silence sound to wrap
+  &#47;&#47; to the speech. The duration must not be more than 10 seconds.
+  &#47;&#47; By default, it&#39;s 0.
   Duration? silence,
+
+  &#47;&#47; The format of audio type to output. By default, it&#39;s mp3.
   AudioFormat? audioFormat,
+
+  &#47;&#47; The speed rate of the speech. Value must be in-between
+  &#47;&#47; 0.5 to 100. By default, it&#39;s 1.0.
   double? speed,
 }) async {
+  if (text.trimLeft().isEmpty) {
+    throw const InvalidArgumentsException(
+      &#39;No valid text was provided in &quot;text&quot; parameter.&#39;,
+    );
+  }
+
+  if (voice.trimLeft().isEmpty) {
+    throw const InvalidArgumentsException(
+      &#39;&#39;&#39;You&#39;ve provided an empty string in &quot;voice&quot; parameter.&#39;&#39;&#39;,
+    );
+  }
+
   final response = await _fetch(&#39;tts&#39;, {
     &#39;text&#39;: text,
     &#39;voice&#39;: voice,
     if (translate != null) &#39;translate&#39;: translate.toString(),
     if (silence != null) &#39;silence&#39;: silence.inMilliseconds.toString(),
     if (audioFormat != null) &#39;audio_format&#39;: audioFormat.name,
-    if (speed != null) &#39;speed&#39;: speed.toString(),
+    if (speed != null) &#39;speed&#39;: speed.toStringAsFixed(1),
   });
 
   return response.bodyBytes;
@@ -147,7 +165,7 @@ between <code>0.5</code> &amp; <code>100</code>. Defaults to <code>1.0</code>.</
 <footer>
   <span class="no-break">
     flowery_tts
-      1.0.0
+      1.1.0
   </span>
 
   

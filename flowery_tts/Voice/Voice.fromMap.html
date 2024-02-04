@@ -57,27 +57,26 @@
       data-above-sidebar="flowery_tts&#47;Voice-class-sidebar.html"
       data-below-sidebar="">
       <div>
-  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.0.0/lib/src/schemas/voice.dart#L20"><span class="material-symbols-outlined">description</span></a></div>
+  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.1.0/lib/src/schemas/voice.dart#L16"><span class="material-symbols-outlined">description</span></a></div>
 <h1><span class="kind-constructor">Voice.fromMap</span> constructor 
 </h1></div>
 
     <section class="multi-line-signature">
       
-      <span class="name ">Voice.fromMap</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="fromMap-param-map"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.4/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.2.4/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">map</span></span></li>
+      <span class="name ">Voice.fromMap</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="fromMap-param-map"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.6/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.2.6/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">map</span></span></li>
 </ol>)
     </section>
 
     
 <section class="desc markdown">
-  <p>Create a new <a href="../../flowery_tts/Voice-class.html">Voice</a> instance
-from a <a href="https://api.dart.dev/stable/3.2.4/dart-core/Map-class.html">Map</a>.</p>
+  <p>Create a new instance of this class from a Map.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">factory Voice.fromMap(Map&lt;String, dynamic&gt; map) =&gt; Voice(
+  <pre class="language-dart"><code class="language-dart">factory Voice.fromMap(Map&lt;String, dynamic&gt; map) =&gt; Voice._(
       name: map[&#39;name&#39;] as String,
       gender: Gender.values.byName(map[&#39;gender&#39;] as String),
       source: map[&#39;source&#39;] as String,
@@ -118,7 +117,7 @@ from a <a href="https://api.dart.dev/stable/3.2.4/dart-core/Map-class.html">Map<
 <footer>
   <span class="no-break">
     flowery_tts
-      1.0.0
+      1.1.0
   </span>
 
   

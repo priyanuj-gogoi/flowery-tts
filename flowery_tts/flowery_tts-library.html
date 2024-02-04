@@ -56,20 +56,12 @@
       data-below-sidebar="flowery_tts&#47;flowery_tts-library-sidebar.html">
       
       <div>
-  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.0.0/lib/flowery_tts.dart#L1"><span class="material-symbols-outlined">description</span></a></div>
+  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.1.0/lib/flowery_tts.dart#L1"><span class="material-symbols-outlined">description</span></a></div>
 <h1><span class="kind-library">flowery_tts</span> library 
  
 </h1></div>
 
     
-<section class="desc markdown">
-  <p>Wraps Flowery Text-to-Speech API.</p>
-<ul>
-<li><a href="https://flowery.pw">Website</a></li>
-<li><a href="https://flowery.pw/docs">API Docs</a></li>
-<li><a href="https://editor.swagger.io/?url=https://api.flowery.pw/openapi.json">OpenAPI Specification</a></li>
-</ul>
-</section>
 
 
     <section class="summary offset-anchor" id="classes">
@@ -81,7 +73,7 @@
 
 </dt>
 <dd>
-  Main class for interacting with the API.
+  The main class of this library.
 </dd>
 
         <dt id="Voice">
@@ -89,7 +81,7 @@
 
 </dt>
 <dd>
-  A representation of <code>TTSVoice</code> schema.
+  A model of <code>TTSVoice</code> schema which contains voice information.
 </dd>
 
         <dt id="VoiceLanguageInfo">
@@ -97,7 +89,8 @@
 
 </dt>
 <dd>
-  A representation of <code>TTSVoiceLanguageInfo</code> schema.
+  A model of <code>TTSVoiceLanguageInfo</code> schema which
+contains language information of a <a href="../flowery_tts/Voice-class.html">Voice</a>.
 </dd>
 
         <dt id="VoicesResponse">
@@ -105,7 +98,8 @@
 
 </dt>
 <dd>
-  A representation of <code>TTSVoicesResponse</code> schema.
+  A model of <code>TTSVoicesResponse</code> schema which
+contains information of all voices.
 </dd>
 
       </dl>
@@ -125,7 +119,7 @@
 
 </dt>
 <dd>
-  The various audio formats supported by the API.
+  The various supported audio output formats.
 </dd>
 
         <dt id="Gender">
@@ -133,7 +127,7 @@
 
 </dt>
 <dd>
-  Types of voice gender.
+  The different types of voice gender.
 </dd>
 
       </dl>
@@ -149,7 +143,7 @@
 
 </dt>
 <dd>
-  A representation of "TTSError" schema.
+  The base class of all exceptions of this library.
 </dd>
 
         <dt id="InvalidArgumentsException">
@@ -157,7 +151,7 @@
 
 </dt>
 <dd>
-  A representation of "TTSInvalidArguments" schema.
+  Thrown when invalid data were provided in the API input.
 </dd>
 
         <dt id="ValidationException">
@@ -165,7 +159,7 @@
 
 </dt>
 <dd>
-  A representation of "ValidationError" schema.
+  Thrown when a required field/input is not provided to the API.
 </dd>
 
       </dl>
@@ -204,7 +198,7 @@
 <footer>
   <span class="no-break">
     flowery_tts
-      1.0.0
+      1.1.0
   </span>
 
   
