@@ -19,31 +19,31 @@ class Flowery {
       headers: {'user-agent': 'flowery_tts/$version'},
     );
 
-    if (response.statusCode != HttpStatus.ok) {
-      final BaseRequest(:method, :url) = response.request!;
-      final body = jsonDecode(response.body) as Map<String, dynamic>;
+    final statusCode = response.statusCode;
 
-      throw switch (response.statusCode) {
-        HttpStatus.badRequest =>
-          InvalidArgumentsException(body['error'] as String),
-        HttpStatus.notFound =>
-          FloweryException('Invalid request route: "$url".'),
-        HttpStatus.methodNotAllowed => FloweryException(
-            'HTTP $method method isn\'t allowed on route "$url".',
-          ),
-        HttpStatus.unprocessableEntity => ValidationException(
-            'Request to "$url" has failed due to some fields were '
-            'not provided or were given invalid inputs.',
-          ),
-        HttpStatus.internalServerError =>
-          FloweryException(body['error'] as String),
-        _ => const FloweryException(
-            'An unknown error has occurred while processing this request.',
-          )
-      };
-    }
+    if (statusCode == HttpStatus.ok) return response;
 
-    return response;
+    final url = response.request!.url;
+
+    // TODO(priyanuj-gogoi): Properly handle response body
+    // in case when body might not be JSON.
+    final body = jsonDecode(response.body) as Map<String, dynamic>;
+
+    throw switch (statusCode) {
+      HttpStatus.badRequest =>
+        InvalidArgumentsException(body['error'] as String),
+      HttpStatus.notFound => FloweryException('Invalid request route: "$url".'),
+      HttpStatus.methodNotAllowed =>
+        FloweryException('''HTTP GET method isn't allowed on route "$url".'''),
+      HttpStatus.unprocessableEntity =>
+        ValidationException(body['error'] as String),
+      HttpStatus.internalServerError =>
+        FloweryException(body['error'] as String),
+      _ => FloweryException(
+          'An unknown error has occurred while processing this request. '
+          'API returned $statusCode status code.',
+        )
+    };
   }
 
   /// Convert the provided `text` into speech.
@@ -80,7 +80,7 @@ class Flowery {
 
     if (voice.trimLeft().isEmpty) {
       throw const InvalidArgumentsException(
-        'You\'ve provided an empty string in "voice" parameter.',
+        '''You've provided an empty string in "voice" parameter.''',
       );
     }
 
