@@ -20,10 +20,15 @@ jobs:
   format: 
     name: format
     runs-on: ubuntu-latest
-    container: dart
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: '*.dart'
+          sparse-checkout-cone-mode: false
+
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@v1
 
       - name: Check whether code is formatted
         run: dart format . -o none --set-exit-if-changed --follow-links
@@ -41,6 +46,12 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: |-
+            *.dart
+            analysis_options.yaml
+            pubspec.yaml
+          sparse-checkout-cone-mode: false
 
       - name: Setup Dart SDK
         uses: dart-lang/setup-dart@v1
