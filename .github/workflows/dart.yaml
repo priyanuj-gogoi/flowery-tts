@@ -20,13 +20,18 @@ jobs:
   format: 
     name: format
     runs-on: ubuntu-latest
-    container: dart
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: '*.dart'
+          sparse-checkout-cone-mode: false
 
-      - name: Check whether code is formatted
-        run: dart format . -o none --set-exit-if-changed --follow-links
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@v1
+
+      - name: Check whether codes are formatted
+        run: dart format --output=none --set-exit-if-changed --follow-links .
 
   analyze: 
     name: analyze
@@ -41,17 +46,29 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: |-
+            *.dart
+            analysis_options.yaml
+            pubspec.yaml
+          sparse-checkout-cone-mode: false
 
       - name: Setup Dart SDK
         uses: dart-lang/setup-dart@v1
         with:
           sdk: ${{ matrix.version }}
 
-      - name: Enable commented lints (if supported)
-        run: .github/scripts/enable_commented_lints.dart
-
       - name: Install dependencies
         run: dart pub get
+
+      - name: Remove unsupported lint rules
+        if: matrix.version == '3.0.0'
+        run: |-
+          yq -i 'del(.linter.rules[] | select(
+              . == "annotate_redeclares" or
+              . == "no_self_assignments" or
+              . == "no_wildcard_variable_uses")
+            )' analysis_options.yaml
 
       - name: Analyze code
         run: dart analyze --fatal-infos

@@ -10,8 +10,7 @@ linter:
     - always_put_required_named_parameters_first
     - always_use_package_imports
     - annotate_overrides
-    # Enable this lint on Dart ^3.2.0 locally.
-    # - annotate_redeclares
+    - annotate_redeclares
     - avoid_annotating_with_dynamic
     - avoid_bool_literals_in_conditional_expressions
     - avoid_catches_without_on_clauses
@@ -45,8 +44,7 @@ linter:
     - avoid_type_to_string
     - avoid_types_as_parameter_names
     - avoid_types_on_closure_parameters
-    # An unreleased lint as of current Dart 3.2.6
-    # Enable it locally on release.
+    # Experimental and not yet available in stable SDK.
     # - avoid_unstable_final_fields
     - avoid_unused_constructor_parameters
     - avoid_void_async
@@ -97,9 +95,8 @@ linter:
     - no_leading_underscores_for_local_identifiers
     - no_literal_bool_comparisons
     - no_runtimeType_toString
-    # Enable these 2 lints on Dart ^3.1.0 locally.
-    # - no_self_assignments
-    # - no_wildcard_variable_uses
+    - no_self_assignments
+    - no_wildcard_variable_uses
     - non_constant_identifier_names
     - noop_primitive_operations
     - null_check_on_nullable_type_parameter
