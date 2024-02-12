@@ -58,11 +58,17 @@ jobs:
         with:
           sdk: ${{ matrix.version }}
 
-      - name: Enable commented lints (if supported)
-        run: .github/scripts/enable_commented_lints.dart
-
       - name: Install dependencies
         run: dart pub get
+
+      - name: Remove unsupported lint rules
+        if: matrix.version == '3.0.0'
+        run: |-
+          yq -i 'del(.linter.rules[] | select(
+              . == "annotate_redeclares" or
+              . == "no_self_assignments" or
+              . == "no_wildcard_variable_uses")
+            )' analysis_options.yaml
 
       - name: Analyze code
         run: dart analyze --fatal-infos
