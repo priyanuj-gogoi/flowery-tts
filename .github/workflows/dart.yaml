@@ -30,8 +30,8 @@ jobs:
       - name: Setup Dart SDK
         uses: dart-lang/setup-dart@v1
 
-      - name: Check whether code is formatted
-        run: dart format . -o none --set-exit-if-changed --follow-links
+      - name: Check whether codes are formatted
+        run: dart format --output=none --set-exit-if-changed --follow-links .
 
   analyze: 
     name: analyze
