@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: '[actions] chore'
+    labels:
+      - github-actions
+    target-branch: parent
+
+  - package-ecosystem: pub
+    directory: /
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: '[deps] chore'
+    labels:
+      - dependency
+    target-branch: parent
+    versioning-strategy: widen
