@@ -17,6 +17,16 @@ updates:
     commit-message:
       prefix: '[deps] chore'
     labels:
-      - dependency
+      - pub
     target-branch: parent
     versioning-strategy: widen
+
+  - package-ecosystem: devcontainers
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: '[devcontainer] chore'
+    labels:
+      - dev-container
+    target-branch: parent
