@@ -1,0 +1,38 @@
+{
+  "name": "Debian",
+  "image": "mcr.microsoft.com/devcontainers/base:bullseye",
+  "onCreateCommand": "wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/dart.gpg; echo 'deb [signed-by=/usr/share/keyrings/dart.gpg arch=amd64] https://storage.googleapis.com/download.dartlang.org/linux/debian stable main' | sudo tee /etc/apt/sources.list.d/dart_stable.list; sudo apt update; sudo apt install dart",
+  "postCreateCommand": "dart --disable-analytics; dart pub get",
+  "postStartCommand": "sudo apt update",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers-contrib/features/actionlint:1": {}
+  },
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/home/vscode/.pub-cache/bin"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "PKief.material-icon-theme",
+        "Dart-Code.dart-code"
+      ],
+      "settings": {
+        "debug.openDebug": "openOnDebugBreak",
+        "debug.internalConsoleOptions": "openOnSessionStart",
+        "workbench.iconTheme": "material-icon-theme",
+        "[dart]": {
+          "editor.formatOnSave": true,
+          "editor.formatOnType": true,
+          "editor.rules": [
+            80
+          ],
+          "editor.selectionHighlight": false,
+          "editor.suggestSelection": "first",
+          "editor.tabCompletion": "onlySnippets",
+          "editor.wordBasedSuggestions": "off"
+        }
+      }
+    }
+  }
+}
