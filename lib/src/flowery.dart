@@ -97,13 +97,13 @@ class Flowery {
   }) async {
     if (text.trimLeft().isEmpty) {
       throw const InvalidArgumentsException(
-        'No valid text was provided in "text" parameter.',
+        'Expected a non-empty/non-whitespace string in "text" parameter.',
       );
     }
 
     if (voice.trimLeft().isEmpty) {
       throw const InvalidArgumentsException(
-        'Expected a non-empty string in "voice" parameter.',
+        'Expected a non-empty/non-whitespace string in "voice" parameter.',
       );
     }
 

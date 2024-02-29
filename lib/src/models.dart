@@ -171,10 +171,11 @@ final class VoicesResponse implements TTSVoicesResponse {
 
       voices.all.add(voice);
       (voice.isMale ? voices.male : voices.female).add(voice);
+      language.code.add(voice.language.code);
 
-      language
-        ..code.add(voice.language.code)
-        ..name.add(voice.language.nameWithoutRegion);
+      if (!voice.language.nameWithoutRegion.contains('Unknown')) {
+        language.name.add(voice.language.nameWithoutRegion);
+      }
 
       sources.add(voice.source);
       speakers.add(voice.name);
@@ -185,9 +186,9 @@ final class VoicesResponse implements TTSVoicesResponse {
       voices: voices.all,
       femaleVoices: voices.female,
       maleVoices: voices.male,
-      languageCodes: language.code.toList(),
-      languageNames: language.name.toList(),
-      sources: sources.toList(),
+      languageCodes: language.code.toList()..sort(),
+      languageNames: language.name.toList()..sort(),
+      sources: sources.toList()..sort(),
       speakers: speakers.toList(),
     );
   }
