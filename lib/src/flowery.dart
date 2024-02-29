@@ -1,76 +1,99 @@
 import 'dart:convert';
-import 'dart:html' if (dart.library.io) 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flowery_tts/src/enums.dart';
-import 'package:flowery_tts/src/exceptions.dart';
-import 'package:flowery_tts/src/schemas/voices_response.dart';
-
 import 'package:http/http.dart';
+
+import 'enums.dart';
+import 'exceptions.dart';
+import 'models.dart';
 
 /// The main class of this library.
 class Flowery {
   /// Create a new instance of this class.
-  const Flowery();
+  ///
+  /// If a [Client] instance is provided in `httpClient` parameter,
+  /// do make sure to [close] the client after all requests are done.
+  /// Check [Client.close] for more details.
+  const Flowery({final Client? httpClient}) : _httpClient = httpClient;
 
-  Future<Response> _fetch(String path, [Map<String, String>? query]) async {
-    final response = await get(
-      apiUrl.replace(path: 'v$apiVersion/$path', queryParameters: query),
+  final Client? _httpClient;
+
+  Future<Uint8List> _request(
+    final String path, [
+    final Map<String, String>? queryParams,
+  ]) async {
+    final Response(
+      :body,
+      :bodyBytes,
+      :request,
+      :statusCode,
+    ) = await (_httpClient?.get ?? get)(
+      apiUrl.replace(path: 'v$apiVersion/$path', queryParameters: queryParams),
       headers: {'user-agent': 'flowery_tts/$version'},
     );
 
-    final statusCode = response.statusCode;
+    if (statusCode == 200) return bodyBytes;
+    final url = request!.url;
 
-    if (statusCode == HttpStatus.ok) return response;
+    switch (statusCode) {
+      case 404:
+        throw FloweryException('Invalid route: "$url".');
+      case 405:
+        throw FloweryException('HTTP GET method not allowed on route "$url".');
+      default:
+        late final Map<String, dynamic> json;
 
-    final url = response.request!.url;
+        try {
+          json = jsonDecode(body) as Map<String, dynamic>;
+        } on FormatException {
+          throw const FloweryException(
+            'Failed to parse response body as JSON!',
+          );
+        }
 
-    // TODO(priyanuj-gogoi): Properly handle response body
-    // in case when body might not be JSON.
-    final body = jsonDecode(response.body) as Map<String, dynamic>;
+        final error = json['error'] as String;
 
-    throw switch (statusCode) {
-      HttpStatus.badRequest =>
-        InvalidArgumentsException(body['error'] as String),
-      HttpStatus.notFound => FloweryException('Invalid request route: "$url".'),
-      HttpStatus.methodNotAllowed =>
-        FloweryException('''HTTP GET method isn't allowed on route "$url".'''),
-      HttpStatus.unprocessableEntity =>
-        ValidationException(body['error'] as String),
-      HttpStatus.internalServerError =>
-        FloweryException(body['error'] as String),
-      _ => FloweryException(
-          'An unknown error has occurred while processing this request. '
-          'API returned $statusCode status code.',
-        )
-    };
+        throw switch (statusCode) {
+          400 => InvalidArgumentsException(error),
+          422 => ValidationException(error),
+          500 => FloweryException(error),
+          _ => FloweryException('Unhandled status code: $statusCode.')
+        };
+    }
   }
 
-  /// Convert the provided `text` into speech.
+  /// Close the underlying API client.
+  ///
+  /// This method should to be called only when a [Client]
+  /// was provided in [Flowery()]'s `httpClient` parameter.
+  void close() => _httpClient?.close();
+
+  /// Convert this `text` into a raw audio speech.
   ///
   /// The output of audio type is `mono`.
+  /// Validation of inputs are handled by the API.
   Future<Uint8List> tts({
     // The text to convert. It has a maximum of 2000 characters length limit.
-    required String text,
+    required final String text,
 
     // Name of the voice speaker.
-    required String voice,
+    required final String voice,
 
     // Whether to translate the given non-english language text
     // to English. By default, it's false.
-    bool? translate,
+    final bool? translate,
 
     // A specific duration of leading & trailing silence sound to wrap
     // to the speech. The duration must not be more than 10 seconds.
     // By default, it's 0.
-    Duration? silence,
+    final Duration? silence,
 
     // The format of audio type to output. By default, it's mp3.
-    AudioFormat? audioFormat,
+    final AudioFormat? audioFormat,
 
     // The speed rate of the speech. Value must be in-between
     // 0.5 to 100. By default, it's 1.0.
-    double? speed,
+    final double? speed,
   }) async {
     if (text.trimLeft().isEmpty) {
       throw const InvalidArgumentsException(
@@ -80,11 +103,11 @@ class Flowery {
 
     if (voice.trimLeft().isEmpty) {
       throw const InvalidArgumentsException(
-        '''You've provided an empty string in "voice" parameter.''',
+        'Expected a non-empty string in "voice" parameter.',
       );
     }
 
-    final response = await _fetch('tts', {
+    return _request('tts', {
       'text': text,
       'voice': voice,
       if (translate != null) 'translate': translate.toString(),
@@ -92,23 +115,12 @@ class Flowery {
       if (audioFormat != null) 'audio_format': audioFormat.name,
       if (speed != null) 'speed': speed.toStringAsFixed(1),
     });
-
-    return response.bodyBytes;
   }
 
-  /// Fetch information of all available voices.
+  /// Get information of all voices.
   Future<VoicesResponse> voices() async {
-    final response = await _fetch('tts/voices');
-
-    // Here, http package chooses ISO-8859-1 encoding instead of UTF-8 due to
-    // the charset parameter missing in Content-Type response header and which
-    // in turn leads to some characters not being correctly represented.
-    // For example, å gets converted to Ã¥.
-    //
-    // To mitigate this issue, we've explicitly decoded raw UTF-8 bytes.
-    final json =
-        jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
-
+    final response = await _request('tts/voices');
+    final json = jsonDecode(utf8.decode(response)) as Map<String, dynamic>;
     return VoicesResponse.fromMap(json);
   }
 
@@ -122,5 +134,5 @@ class Flowery {
   static const apiVersion = '1';
 
   /// The current version of this package.
-  static const version = '1.1.0';
+  static const version = '1.2.0';
 }

@@ -1,8 +1,9 @@
 name: flowery_tts
-version: 1.1.0
+version: 1.2.0
 description: >-
-  Flowery TTS is a free Text-to-Speech generator.
-  This package is an unofficial wrapper of Flowery TTS API.
+  A free Text-to-Speech service providing 850+ voices with
+  English translation support. This package is an unofficial
+  wrapper of Flowery TTS API.
 
 repository: https://github.com/priyanuj-gogoi/flowery-tts
 
@@ -18,11 +19,12 @@ platforms:
   web:
 
 topics:
-  - api
-  - flowery
+  - api-wrapper
+  - free
   - text-to-speech
+  - translation
   - tts
-  - voice
 
 dependencies:
   http: ^1.0.0
+  meta: ^1.12.0
