@@ -38,10 +38,10 @@ endorsed, nor sponsored by Flowery API team. All credits goes to
 [contributors](https://github.com/priyanuj-gogoi/flowery-tts/contributors)
 who were involved for the development & maintainance of this package.
 
-[Dart]: https://img.shields.io/badge/Dart-%5E3.0.0-blue
-[Flutter]: https://img.shields.io/badge/Flutter-%5E3.10.0-blue
-[Version]: https://img.shields.io/badge/Version-1.2.0-blue
-[Likes]: https://img.shields.io/pub/likes/flowery_tts?label=Pub%20Likes
-[Points]: https://img.shields.io/pub/points/flowery_tts?label=Pub%20Points
-[Popularity]: https://img.shields.io/pub/popularity/flowery_tts?label=Pub%20Popularity
+[Dart]: https://img.shields.io/badge/Dart-%5E3.0.0-blue?style=flat-square
+[Flutter]: https://img.shields.io/badge/Flutter-%5E3.10.0-blue?style=flat-square
+[Version]: https://img.shields.io/badge/Version-1.2.0-blue?style=flat-square
+[Likes]: https://img.shields.io/pub/likes/flowery_tts?label=Pub%20Likes&style=flat-square
+[Points]: https://img.shields.io/pub/points/flowery_tts?label=Pub%20Points&style=flat-square
+[Popularity]: https://img.shields.io/pub/popularity/flowery_tts?label=Pub%20Popularity&style=flat-square
 [Pub Score]: https://pub.dev/packages/flowery_tts/score
