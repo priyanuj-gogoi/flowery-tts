@@ -1,7 +1,7 @@
 /// The base class of all exceptions of this library.
 ///
-/// This exception is based of `TTSVoice` schema and can also
-/// be thrown in cases when any general error occurs.
+/// This exception is based of `TTSVoice` schema and
+/// can also be thrown for general error cases as well.
 class FloweryException implements Exception {
   /// {@template flowery.exception}
   /// Create a new instance of this exception.
@@ -16,7 +16,7 @@ class FloweryException implements Exception {
   String toString() => 'FloweryException: $error';
 }
 
-/// Thrown when invalid data were provided in the API input.
+/// Thrown when invalid data is provided in the API input.
 ///
 /// This exception is based of `TTSInvalidArguments` schema.
 class InvalidArgumentsException extends FloweryException {

@@ -8,7 +8,6 @@ linter:
   rules:
     - always_declare_return_types
     - always_put_required_named_parameters_first
-    - always_use_package_imports
     - annotate_overrides
     - annotate_redeclares
     - avoid_annotating_with_dynamic
@@ -22,11 +21,11 @@ linter:
     - avoid_equals_and_hash_code_on_mutable_classes
     - avoid_escaping_inner_quotes
     - avoid_field_initializers_in_const_classes
-    - avoid_final_parameters
     - avoid_function_literals_in_foreach_calls
     - avoid_implementing_value_types
     - avoid_init_to_null
     - avoid_js_rounded_ints
+    - avoid_multiple_declarations_per_line
     - avoid_null_checks_in_equality_operators
     - avoid_positional_boolean_parameters
     - avoid_print
@@ -44,8 +43,6 @@ linter:
     - avoid_type_to_string
     - avoid_types_as_parameter_names
     - avoid_types_on_closure_parameters
-    # Experimental and not yet available in stable SDK.
-    # - avoid_unstable_final_fields
     - avoid_unused_constructor_parameters
     - avoid_void_async
     - await_only_futures
@@ -57,8 +54,8 @@ linter:
     - close_sinks
     - collection_methods_unrelated_type
     - combinators_ordering
+    - comment_references
     - conditional_uri_does_not_exist
-    - constant_identifier_names
     - control_flow_in_finally
     - curly_braces_in_flow_control_structures
     - dangling_library_doc_comments
@@ -81,6 +78,7 @@ linter:
     - implicit_reopen
     - invalid_case_patterns
     - join_return_with_assignment
+    - leading_newlines_in_multiline_strings
     - library_annotations
     - library_names
     - library_prefixes
@@ -124,6 +122,7 @@ linter:
     - prefer_final_fields
     - prefer_final_in_for_each
     - prefer_final_locals
+    - prefer_final_parameters
     - prefer_for_elements_to_map_fromIterable
     - prefer_foreach
     - prefer_function_declarations_over_variables
@@ -141,6 +140,7 @@ linter:
     - prefer_mixin
     - prefer_null_aware_method_calls
     - prefer_null_aware_operators
+    - prefer_relative_imports
     - prefer_single_quotes
     - prefer_spread_collections
     - prefer_typing_uninitialized_variables
