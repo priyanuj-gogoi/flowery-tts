@@ -29,7 +29,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">flowery_tts</a></li>
-    <li><a href="../../flowery_tts/flowery_tts-library.html">flowery_tts</a></li>
+    <li><a href="../../flowery_tts/flowery_tts-library.html">flowery_tts.dart</a></li>
     <li><a href="../../flowery_tts/Flowery-class.html">Flowery</a></li>
     <li class="self-crumb">voices method</li>
   </ol>
@@ -57,14 +57,14 @@
       data-above-sidebar="flowery_tts&#47;Flowery-class-sidebar.html"
       data-below-sidebar="">
       <div>
-  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.1.0/lib/src/flowery.dart#L100"><span class="material-symbols-outlined">description</span></a></div>
+  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.2.0/lib/src/flowery.dart#L121"><span class="material-symbols-outlined">description</span></a></div>
 <h1><span class="kind-method">voices</span> method 
 </h1></div>
 
     <section class="multi-line-signature">
       
 
-<span class="returntype"><a href="https://api.dart.dev/stable/3.2.6/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../flowery_tts/VoicesResponse-class.html">VoicesResponse</a></span>&gt;</span></span>
+<span class="returntype"><a href="https://api.dart.dev/stable/3.3.0/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../flowery_tts/VoicesResponse-class.html">VoicesResponse</a></span>&gt;</span></span>
 <span class="name ">voices</span>(<wbr>)
 
       
@@ -72,7 +72,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Fetch information of all available voices.</p>
+  <p>Get information of all voices.</p>
 </section>
 
 
@@ -80,17 +80,8 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;VoicesResponse&gt; voices() async {
-  final response = await _fetch(&#39;tts&#47;voices&#39;);
-
-  &#47;&#47; Here, http package chooses ISO-8859-1 encoding instead of UTF-8 due to
-  &#47;&#47; the charset parameter missing in Content-Type response header and which
-  &#47;&#47; in turn leads to some characters not being correctly represented.
-  &#47;&#47; For example, å gets converted to Ã¥.
-  &#47;&#47;
-  &#47;&#47; To mitigate this issue, we&#39;ve explicitly decoded raw UTF-8 bytes.
-  final json =
-      jsonDecode(utf8.decode(response.bodyBytes)) as Map&lt;String, dynamic&gt;;
-
+  final response = await _request(&#39;tts&#47;voices&#39;);
+  final json = jsonDecode(utf8.decode(response)) as Map&lt;String, dynamic&gt;;
   return VoicesResponse.fromMap(json);
 }</code></pre>
 </section>
@@ -126,7 +117,7 @@
 <footer>
   <span class="no-break">
     flowery_tts
-      1.1.0
+      1.2.0
   </span>
 
   

@@ -29,7 +29,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">flowery_tts</a></li>
-    <li><a href="../../flowery_tts/flowery_tts-library.html">flowery_tts</a></li>
+    <li><a href="../../flowery_tts/flowery_tts-library.html">flowery_tts.dart</a></li>
     <li><a href="../../flowery_tts/VoicesResponse-class.html">VoicesResponse</a></li>
     <li class="self-crumb">operator [] method</li>
   </ol>
@@ -57,7 +57,7 @@
       data-above-sidebar="flowery_tts&#47;VoicesResponse-class-sidebar.html"
       data-below-sidebar="">
       <div>
-  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.1.0/lib/src/schemas/voices_response.dart#L73"><span class="material-symbols-outlined">description</span></a></div>
+  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.2.0/lib/src/models.dart#L251"><span class="material-symbols-outlined">description</span></a></div>
 <h1><span class="kind-method">operator []</span> method 
 </h1></div>
 
@@ -65,7 +65,7 @@
       
 
 <span class="returntype"><a href="../../flowery_tts/Voice-class.html">Voice</a>?</span>
-<span class="name ">operator []</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="[]-param-name"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.2.6/dart-core/String-class.html">String</a></span> <span class="parameter-name">name</span></span></li>
+<span class="name ">operator []</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="[]-param-voiceName"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.3.0/dart-core/String-class.html">String</a></span> <span class="parameter-name">voiceName</span></span></li>
 </ol>)
 
       
@@ -73,17 +73,36 @@
     </section>
     
 <section class="desc markdown">
-  <p>Fetch a <a href="../../flowery_tts/Voice-class.html">Voice</a> instance using it's <code>name</code> (case-insensitive).</p>
-<p>Return <code>null</code>, if it doesn't exists.</p>
+  <p>Find a <a href="../../flowery_tts/Voice-class.html">Voice</a> instance having <code>voiceName</code> as name.</p>
+<p>The <code>voiceName</code> parameter is case-insensitive.
+Return the <a href="../../flowery_tts/Voice-class.html">Voice</a> instance, if found or otherwise, <code>null</code>.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Voice? operator [](String name) {
-  for (final voice in voices) {
-    if (voice.name.toLowerCase() == name.toLowerCase()) return voice;
+  <pre class="language-dart"><code class="language-dart">Voice? operator [](final String voiceName) {
+  var name = voiceName.trim();
+  if (name.isEmpty) return null;
+  name = name.toLowerCase();
+
+  &#47;&#47; Given the pre-sorted nature of the &quot;voices&quot; property (by name),
+  &#47;&#47; the Binary Search algorithm is used here for efficient retrieval
+  &#47;&#47; of a specific Voice instance.
+  var minIndex = 0;
+  var maxIndex = count - 1;
+
+  while (minIndex &lt;= maxIndex) {
+    final median = (minIndex + maxIndex) ~&#47; 2;
+    switch (voices[median].name.toLowerCase().compareTo(name)) {
+      case 0:
+        return voices[median];
+      case &lt; 0:
+        minIndex = median + 1;
+      case &gt; 0:
+        maxIndex = median - 1;
+    }
   }
   return null;
 }</code></pre>
@@ -120,7 +139,7 @@
 <footer>
   <span class="no-break">
     flowery_tts
-      1.1.0
+      1.2.0
   </span>
 
   

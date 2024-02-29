@@ -29,7 +29,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">flowery_tts</a></li>
-    <li><a href="../../flowery_tts/flowery_tts-library.html">flowery_tts</a></li>
+    <li><a href="../../flowery_tts/flowery_tts-library.html">flowery_tts.dart</a></li>
     <li><a href="../../flowery_tts/Flowery-class.html">Flowery</a></li>
     <li class="self-crumb">Flowery const constructor</li>
   </ol>
@@ -57,25 +57,29 @@
       data-above-sidebar="flowery_tts&#47;Flowery-class-sidebar.html"
       data-below-sidebar="">
       <div>
-  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.1.0/lib/src/flowery.dart#L14"><span class="material-symbols-outlined">description</span></a></div>
+  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/priyanuj-gogoi/flowery-tts/tree/1.2.0/lib/src/flowery.dart#L17"><span class="material-symbols-outlined">description</span></a></div>
 <h1><span class="kind-constructor">Flowery</span> constructor 
 </h1></div>
 
     <section class="multi-line-signature">
       const
-      <span class="name ">Flowery</span>(<wbr>)
+      <span class="name ">Flowery</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="-param-httpClient">{<span class="type-annotation"><a href="https://pub.dev/documentation/http/1.2.1/http/Client-class.html">Client</a>?</span> <span class="parameter-name">httpClient</span>}</span></li>
+</ol>)
     </section>
 
     
 <section class="desc markdown">
   <p>Create a new instance of this class.</p>
+<p>If a <a href="https://pub.dev/documentation/http/1.2.1/http/Client-class.html">Client</a> instance is provided in <code>httpClient</code> parameter,
+do make sure to <a href="../../flowery_tts/Flowery/close.html">close</a> the client after all requests are done.
+Check <a href="https://pub.dev/documentation/http/1.2.1/http/Client/close.html">Client.close</a> for more details.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">const Flowery</code></pre>
+  <pre class="language-dart"><code class="language-dart">const Flowery({final Client? httpClient}) : _httpClient = httpClient;</code></pre>
 </section>
 
 
@@ -109,7 +113,7 @@
 <footer>
   <span class="no-break">
     flowery_tts
-      1.1.0
+      1.2.0
   </span>
 
   
